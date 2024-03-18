@@ -1,49 +1,60 @@
-const express = require('express');
-const app = express();
+# User information
+user_info = {
+    "name": "Your Full Name",
+    "email": "your_colle@example.com",
+    "rollNumber": ROLL_NUMBER,
+    "phone": "1234567890"
+}
 
-app.use(express.json());
+# Function to create an investment account
+def create_investment_account(create_url, user_data):
+    response = requests.post(create_url, json=user_data)
+    if response.ok:
+        account_number = response.json().get("accountNumber")
+        print("Investment account created successfully. Account number:", account_number)
+        return account_number
+    else:
+        print("Failed to create investment account.")
+        return None
 
-app.post('/bfhl', (req, res) => {
-  const { data } = req.body;
+# Function to get current stock price of a company
+def get_current_stock_price(company_name):
+    # Perform web scraping or use an API to get the current stock price
+    # For demonstration purposes, I'm using a placeholder value
+    return 6521.40  # Placeholder value
 
-  if (!Array.isArray(data)) {
-    return res.status(400).json({
-      is_success: false,
-      error: 'Invalid input. Please provide an array.',
-    });
-  }
+# Function to buy stocks in a company
+def buy_stocks(buy_url, headers, data):
+    response = requests.post(buy_url, headers=headers, json=data)
+    if response.ok:
+        print("Successfully bought stocks in", COMPANY_NAME)
+    else:
+        print("Failed to buy stocks.")
 
-  const evenNumbers = [];
-  const oddNumbers = [];
-  const alphabets = [];
+# Main function
+def main():
+    # Step 1: Create investment account
+    account_number = create_investment_account(CREATE_ACCOUNT_URL, user_info)
+    if not account_number:
+        return
 
-  data.forEach(item => {
-    if (typeof item === 'number') {
-      if (item % 2 === 0) {
-        evenNumbers.push(item);
-      } else {
-        oddNumbers.push(item);
-      }
-    } else if (typeof item === 'string') {
-      if (/^[a-zA-Z]+$/.test(item)) {
-        alphabets.push(item.toUpperCase());
-      }
+    # Step 2: Get current stock price
+    current_price = get_current_stock_price(COMPANY_NAME)
+    if not current_price:
+        return
+
+    # Step 3: Buy stocks
+    headers = {
+        "content-type": "application/json",
+        "bfhl-auth": str(ROLL_NUMBER)
     }
-  });
+    data = {
+        "company": COMPANY_NAME,
+        "currentPrice": current_price,
+        "accountNumber": account_number,
+        "githubRepoLink": GITHUB_REPO_LINK
+    }
+    buy_stocks(BUY_STOCKS_URL, headers, data)
 
-  const userId = john_doe_${new Date().getFullYear()};
-
-  res.status(200).json({
-    is_success: true,
-    name: 'Maninder Singh',
-    email: 'maninder0849.be21@chitkara.edu.in',
-    roll_number: '2110990849',
-    phone : '+91-9671504084
-  });
-});
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(Server is running on port ${PORT});
-});
+if __name__ == "__main__":
+    main()
