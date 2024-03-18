@@ -1,9 +1,9 @@
 # User information
 user_info = {
-    "name": "Your Full Name",
-    "email": "your_colle@example.com",
-    "rollNumber": ROLL_NUMBER,
-    "phone": "1234567890"
+    "name": "Maninder Singh",
+    "email": "maninder0849.be21@chitkara.edu.in",
+    "rollNumber": 2110990849,
+    "phone": 9671504084,
 }
 
 # Function to create an investment account
