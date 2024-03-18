@@ -35,10 +35,10 @@ app.post('/bfhl', (req, res) => {
 
   res.status(200).json({
     is_success: true,
-    name: 'Shivaz Tinna',
-    email: 'shivaz1320.be21@chitkara.edu.in',
-    roll_number: '2110991320',
-    phone : '+91
+    name: 'Maninder Singh',
+    email: 'maninder0849.be21@chitkara.edu.in',
+    roll_number: '2110990849',
+    phone : '+91-9671504084
   });
 });
 
